@@ -140,20 +140,35 @@ class AddressBook {
     //sort person by name
     sortContactsByName() {
         this.contacts.sort((a, b) => a.firstName.localeCompare(b.firstName));
-        console.log('Sorted Contacts:', this.contacts.map(contact => contact.displayContact()));
+        console.log('Sorted Contacts by name:', this.contacts.map(contact => contact.displayContact()));
+    }
+    //sort person by city
+    sortByCity() {
+        this.contacts.sort((a, b) => a.city.localeCompare(b.city));
+        console.log('Sorted Contacts by city:', this.contacts.map(contact => contact.displayContact()));
+    }
+    //sort person by state
+    sortByState() {
+        this.contacts.sort((a, b) => a.state.localeCompare(b.state));
+        console.log('Sorted Contacts by state:', this.contacts.map(contact => contact.displayContact()));
+    }
+    //sort person by zip
+    sortByZip() {
+        this.contacts.sort((a, b) => a.zip.localeCompare(b.zip));
+        console.log('Sorted Contacts by zip:', this.contacts.map(contact => contact.displayContact()));
     }
 }
 
 console.log(JSON.stringify(addressBook.contacts));
 addressBook.addContact("Kshitiz", "Katiyar", "Mathura", "CityName", "UttarPradesh", "281001", "1234567890", "kshitiz@gmail.com");
-addressBook.addContact("Shanya", "Sharma", "Mathura", "CityName", "UttarPradesh", "281001", "1234567890", "shanya@gmail.com");
+addressBook.addContact("Abhinav", "Sharma", "Mathura", "CityName", "UttarPradesh", "281001", "1234567890", "abhinav@gmail.com");
 console.log(JSON.stringify(addressBook.contacts));
 console.log();
 
 addressBook.findAndEditContact("Xyz",{city: "NewCity", phone: "9876543210"});
-addressBook.findAndEditContact("Parth",{city: "NewCity", phone: "7017731371"});
+addressBook.findAndEditContact("Kshitiz",{city: "NewCity", phone: "7017731371"});
 addressBook.findAndDeleteContact("Abc");
-addressBook.findAndDeleteContact("Shanya");
+addressBook.findAndDeleteContact("Abhinav");
 
 console.log(JSON.stringify(addressBook.contacts,null,2));
 
@@ -170,3 +185,9 @@ console.log("Count of contacts by city and state:", addressBook.getContactCountB
 
 // Sorting contacts by name
 addressBook.sortContactsByName();
+
+
+// Sorting contacts by city, state, and zip
+addressBook.sortByCity();
+addressBook.sortByState();
+addressBook.sortByZip();
