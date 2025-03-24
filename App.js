@@ -122,6 +122,21 @@ class AddressBook {
 
         return { groupedByCity, groupedByState };
     }
+
+     //count persons by city or state name
+     getContactCountByCityOrState() {
+        const countByCity = this.contacts.reduce((acc, contact) => {
+            acc[contact.city] = (acc[contact.city] || 0) + 1;
+            return acc;
+        }, {});
+
+        const countByState = this.contacts.reduce((acc, contact) => {
+            acc[contact.state] = (acc[contact.state] || 0) + 1;
+            return acc;
+        }, {});
+
+        return { countByCity, countByState };
+    }
 }
 
 const addressBook = new AddressBook();
@@ -129,21 +144,21 @@ const addressBook = new AddressBook();
 console.log(JSON.stringify(addressBook.contacts));
 addressBook.addContact("Parth", "Goyal", "Mathura", "CityName", "MadhyaPradesh", "281001", "1234567890", "parth@gmail.com");
 addressBook.addContact("Abhinav", "Gupta", "Jhansi", "CityName", "UttarPradesh", "281001", "1234567899", "abhinav@gmail.com");
-addressBook.addContact("Kshiriz", "Katiyar", "Jhansi", "CityName", "UttarPradesh", "281001", "1234567899", "kshitiz@gmail.com");
+addressBook.addContact("Kshitiz", "Katiyar", "Jhansi", "CityName", "UttarPradesh", "281001", "1234567899", "kshitiz@gmail.com");
 addressBook.addContact("Shanya", "Sharma", "Mathura", "CityName", "UttarPradesh", "281001", "1234567890", "shanya@gmail.com");
 console.log(JSON.stringify(addressBook.contacts));
 console.log();
 
 addressBook.findAndEditContact("Xyz",{city: "NewCity", phone: "9876543210"});
-addressBook.findAndEditContact("Parth",{city: "NewCity", phone: "9752008224"});
+addressBook.findAndEditContact("Kshitiz",{city: "NewCity", phone: "7017731371"});
 addressBook.findAndDeleteContact("Abc");
-addressBook.findAndDeleteContact("Shanya");
+addressBook.findAndDeleteContact("Abhinav");
 
 console.log(JSON.stringify(addressBook.contacts,null,2));
 
 // Display contact count
 console.log("Number of contacts in address book:", addressBook.getContactCount());
-addressBook.addContact("Parth", "Goyal", "Mathura", "CityName", "MadhyaPradesh", "281001", "9752008224", "parth@gmail.com");
+addressBook.addContact("Kshitiz", "Katiyar", "Mathura", "CityName", "UttarPradesh", "243006", "7017731371", "kshitiz@gmail.com");
 
 // searching contacts by city or state
 console.log("Contacts in CityName:", addressBook.searchByCityOrState("CityName"));
@@ -151,3 +166,6 @@ console.log("Contacts in StateName:", addressBook.searchByCityOrState("UttarPrad
 
 //viewing persons by city or state
 console.log("Persons grouped by city and state:", addressBook.viewPersonsByCityOrState());
+
+//getting count by city and state
+console.log("Count of contacts by city and state:", addressBook.getContactCountByCityOrState());
